@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宿舍查寝照片整理器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar"><div><p class="eyebrow">LOCAL PHOTO WORKSPACE</p><h1>宿舍查寝照片整理器</h1><p class="lede">在浏览器本地读取 ZIP，按压缩包内的目录分类，生成新的整理包。照片不会上传。</p></div><div class="privacy"><span class="dot"></span>仅在本机处理</div></header>
+    <section class="workspace">
+      <aside class="panel setup-panel"><div class="section-heading"><span class="step">01</span><div><h2>输入与规则</h2><p>选择本周收到的压缩包</p></div></div>
+        <label class="dropzone" id="dropzone"><input id="fileInput" type="file" accept=".zip,application/zip" multiple><span class="upload-icon">↑</span><strong>拖入 ZIP 文件</strong><span>或点击选择多个压缩包</span></label>
+        <div class="file-list" id="fileList"><div class="empty">尚未选择文件</div></div>
+        <div class="fields"><label>输出日期<input id="dateInput" type="date"></label><label>宿舍/楼栋名称<input id="buildingInput" value="本周宿舍" placeholder="例如：东十、东九"></label></div>
+        <div class="rule-box"><strong>目录识别规则</strong><p>优秀宿舍 / 优秀寝室 → 优秀宿舍<br>不合格宿舍 / 不合格寝室 → 不合格宿舍<br>义工查寝照片 → 义工查寝照片<br>其他目录 → 待确认</p></div><button class="primary" id="previewBtn" disabled>预览整理结果 <span>→</span></button>
+      </aside>
+      <section class="panel results-panel"><div class="section-heading"><span class="step">02</span><div><h2>预览与导出</h2><p>确认目录后再生成整理包</p></div></div><div class="status-line"><span id="statusBadge" class="badge neutral">等待文件</span><span id="statusText">选择 ZIP 后开始扫描</span></div>
+        <div class="stats"><div class="stat"><span>优秀宿舍</span><strong id="goodCount">—</strong></div><div class="stat"><span>不合格宿舍</span><strong id="badCount">—</strong></div><div class="stat"><span>义工查寝</span><strong id="volunteerCount">—</strong></div><div class="stat warn"><span>待确认</span><strong id="pendingCount">—</strong></div></div>
+        <div class="result-table-wrap"><table><thead><tr><th>来源压缩包</th><th>原目录</th><th>照片数</th><th>归入类别</th></tr></thead><tbody id="resultBody"><tr><td colspan="4" class="empty">预览后显示目录归类</td></tr></tbody></table></div><div class="bottom-actions"><div class="integrity" id="integrity">哈希覆盖校验将在导出时进行</div><button class="secondary" id="downloadBtn" disabled>下载整理 ZIP <span>↓</span></button></div>
+      </section></section><footer><span>离线工具 · 文件只在当前浏览器标签页内处理</span><span id="footerCount"></span></footer>
+  </main><script src="app.js"></script>
+</body></html>
